@@ -1,0 +1,20 @@
+---
+#                  _  __          __     ___            _        
+#  _ __   ___ _ __| |/ /__ _ __ __\ \   / / |_ __ _ ___| | _____ 
+# | '_ \ / _ \ '__| | / __| '__/ __| | / /| __/ _` / __| |/ / __|
+# | |_) |  __/ |  | | \__ \ | | (__| |/ / | || (_| \__ \   <\__ \
+# | .__/ \___|_|  |_| |___/_|  \___| /_/   \__\__,_|___/_|\_\___/
+# |_|                \_\          /_/                            
+# make-module
+- name: make-module | cpanm shoudl be downloaded
+  get_url:
+    url:  "http://cpanmin.us/"
+    dest: "{{ perl.workingdir }}/cpanm"
+
+- name: make-module | {{ perl.install }}/bin/cpanm
+  shell: >
+    install -o root -m 0755 cpanm {{ localroot }}/bin
+  args:
+    chdir:   "{{ perl.workingdir }}"
+    creates: "{{ localroot }}/bin/cpanm"
+

@@ -1,0 +1,41 @@
+---
+#                  _  __          __     ___            _        
+#  _ __   ___ _ __| |/ /__ _ __ __\ \   / / |_ __ _ ___| | _____ 
+# | '_ \ / _ \ '__| | / __| '__/ __| | / /| __/ _` / __| |/ / __|
+# | |_) |  __/ |  | | \__ \ | | (__| |/ / | || (_| \__ \   <\__ \
+# | .__/ \___|_|  |_| |___/_|  \___| /_/   \__\__,_|___/_|\_\___/
+# |_|                \_\          /_/                            
+# compile-src
+- name: compile-src | REBUILD | make clean
+  when: perl.rebuild == true
+  shell: make clean distclean
+  args:
+    chdir:   "{{ perl.workingdir }}/perl-{{ perl.version }}/"
+    removes: "Makefile"
+
+- name: compile-src | Perl {{ perl.version }} should be configured
+  shell: >
+    /bin/sh Configure -des -Dprefix={{ perl.install }}
+  args:
+    chdir:   "{{ perl.workingdir }}/perl-{{ perl.version }}/"
+    creates: "Makefile"
+
+- name: compile-src | make Perl {{ perl.version }}
+  register: make_perl_binary
+  shell: make
+  args:
+    chdir:   "{{ perl.workingdir }}/perl-{{ perl.version }}/"
+    creates: "perl"
+
+- name: compile-src | make test should be completed
+  when: make_perl_binary.changed
+  shell: make test
+  args:
+    chdir: "{{ perl.workingdir }}/perl-{{ perl.version }}/"
+
+- name: compile-src | perl {{ perl.version }} should be installed
+  when: make_perl_binary.changed
+  shell: make install
+  args:
+    chdir: "{{ perl.workingdir }}/perl-{{ perl.version }}/"
+

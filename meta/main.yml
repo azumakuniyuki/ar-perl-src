@@ -1,0 +1,32 @@
+galaxy_info:
+  author: azumakuniyuki
+  description: Install Perl from a source code
+  company: Cubiroot Co. Ltd.
+    issue_tracker_url: https://github.com/azumakuniyuki/ar-addlogins/issues
+  license: BSD
+  min_ansible_version: 2.0
+  platforms:
+  - name: Fedora
+    versions:
+    - all
+  - name: GenericLinux
+    versions:
+    - all
+  - name: Amazon
+    versions:
+    - all
+  - name: FreeBSD
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: EL
+    versions:
+    - all
+  galaxy_tags: ['perl']
+dependencies: []
+
