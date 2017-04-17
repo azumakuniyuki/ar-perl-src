@@ -2,7 +2,7 @@ galaxy_info:
   author: azumakuniyuki
   description: Install Perl from a source code
   company: Cubiroot Co. Ltd.
-    issue_tracker_url: https://github.com/azumakuniyuki/ar-addlogins/issues
+    issue_tracker_url: https://github.com/azumakuniyuki/ar-perl-src/issues
   license: BSD
   min_ansible_version: 2.0
   platforms:
