@@ -13,8 +13,8 @@
 
 - name: make-module | {{ perl.install }}/bin/cpanm
   shell: >
-    install -o root -m 0755 cpanm {{ localroot }}/bin
+    install -o root -m 0755 cpanm {{ perl.install }}/bin
   args:
     chdir:   "{{ perl.workingdir }}"
-    creates: "{{ localroot }}/bin/cpanm"
+    creates: "{{ perl.install }}/bin/cpanm"
 
